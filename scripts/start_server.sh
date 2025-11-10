@@ -1,9 +1,14 @@
 #!/bin/bash
 set -e
 
-# Navigate to your app directory
-cd /home/ubuntu/app
+echo "=== Starting Python 2 Flask app ==="
 
-# Start the Flask app using Python 2
-python2 app.py
+cd /home/ubuntu/Python-Sample-Application
 
+# Kill any process running on port 5000
+sudo fuser -k 5000/tcp || true
+
+# Start the Flask app in the background
+nohup sudo python2 app.py > app.log 2>&1 &
+
+echo "=== Flask app started successfully ==="
