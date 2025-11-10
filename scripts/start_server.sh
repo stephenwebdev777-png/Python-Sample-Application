@@ -1,4 +1,9 @@
 #!/bin/bash
+set -e
+
+# Navigate to your app directory
 cd /home/ubuntu/app
-pkill -f "python3 app.py" || true
-nohup python3 app.py > app.log 2>&1 &
+
+# Start the Flask app using Python 2
+python2 app.py
+
