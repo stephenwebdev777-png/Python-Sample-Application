@@ -1,22 +1,14 @@
 #!/bin/bash
-# Script to clean old application files before deployment
+echo "Cleaning old deployment folder..."
 
-APP_DIR="/home/ubuntu/Python-Sample-Application"
+DEPLOY_DIR="/home/ubuntu/Python-Sample-Application"
 
-echo "Cleaning old application files in $APP_DIR..."
-
-# Check if directory exists
-if [ -d "$APP_DIR" ]; then
-    # Remove all files and subdirectories inside
-    sudo rm -rf $APP_DIR/*
-    echo "Old files removed successfully."
-else
-    echo "Directory $APP_DIR does not exist. Creating it..."
-    sudo mkdir -p $APP_DIR
+if [ -d "$DEPLOY_DIR" ]; then
+    sudo rm -rf "$DEPLOY_DIR"
+    echo "Old folder removed."
 fi
 
-# Set proper ownership for ubuntu user
-sudo chown -R ubuntu:ubuntu $APP_DIR
-
-echo "Cleanup completed."
+sudo mkdir -p "$DEPLOY_DIR"
+sudo chown ubuntu:ubuntu "$DEPLOY_DIR"
+echo "New folder created and ready."
 
